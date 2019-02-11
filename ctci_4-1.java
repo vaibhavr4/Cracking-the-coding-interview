@@ -19,15 +19,26 @@ public class FindPath
 	}
 	public static boolean isPath(int s, int d)
 	{
+	    LinkedList<Integer> q = new LinkedList<Integer>();
+	    
 	    boolean[] visited = new boolean[V];
 	    visited[s] = true;
-	    Iterator<Integer> i = adj[s].listIterator();
-	    while(i.hasNext())
+	    Iterator<Integer> i; 
+	    q.add(s);
+	    while(!q.isEmpty())
 	    {
-	        int n = i.next();
-	        System.out.println(n);
-	        if(n==d)
-	            return true;
+	        int n = q.poll();
+	        i = adj[n].listIterator();
+	        while(i.hasNext())
+	        {
+    	        int x = i.next();
+    	        System.out.println(x);
+    	        if(x==d)
+    	            return true;
+    	        visited[x] = true;
+    	        q.add(x);
+	        }
+
 	    }
 	    return false;
 	    
@@ -43,6 +54,6 @@ public class FindPath
         g.addEdge(2, 3); 
         g.addEdge(3, 3); 
         
-        System.out.println(isPath(2,3));
+        System.out.println(isPath(2,1));
     } 
 }
