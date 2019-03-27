@@ -1,5 +1,6 @@
 // Triple step
 
+//Top-down approach
 int countWays(int n)
 {
 	int memo[] = new int[n+1];
@@ -17,7 +18,8 @@ int countWays(int n,int[] memo)
 		return memo[n];
 	else
 	{
-		memo[n] = memo[n-1]+memo[n-2]+memo[n-3];
+		memo[n] = countWays(n-1,memo)+countWays(n-2,memo)+countWays(n-3,memo);
 	}
 	return memo[n];
 }
+
